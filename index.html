@@ -250,97 +250,86 @@
       </div>
     </section>
 
-    <!-- ─────────────────────── RIGHT SIDEBAR ─────────────────────── -->
-    <aside id="sidebar-right">
-      <div class="sidebar-scroll">
-        <div class="sidebar-header">
-          <h3>Controls</h3>
+    <!-- ─────────────────────── RIGHT SIDEBAR (PYTHON CODE) ─────────────────────── -->
+    <aside id="sidebar-right" class="code-sidebar">
+      <div class="code-header">
+        <div class="code-header-left">
+          <span class="code-title">Python Code</span>
+          <span class="code-lib-badge" id="code-lib-badge">matplotlib</span>
         </div>
-
-        <!-- Dynamic Control Sections -->
-        <div id="controls-container">
-          <!-- DATA section -->
-          <div class="control-section" id="ctrl-data">
-            <div class="control-section-header" data-section="data">
-              <span>Data</span>
-              <span class="section-chevron">▾</span>
-            </div>
-            <div class="control-section-body" data-section-body="data">
-              <!-- Dynamically populated -->
-            </div>
-          </div>
-
-          <!-- APPEARANCE section -->
-          <div class="control-section" id="ctrl-appearance">
-            <div class="control-section-header" data-section="appearance">
-              <span>Appearance</span>
-              <span class="section-chevron">▾</span>
-            </div>
-            <div class="control-section-body" data-section-body="appearance">
-              <!-- Dynamically populated -->
-            </div>
-          </div>
-
-          <!-- ANALYSIS section -->
-          <div class="control-section" id="ctrl-analysis">
-            <div class="control-section-header" data-section="analysis">
-              <span>Analysis</span>
-              <span class="section-chevron">▾</span>
-            </div>
-            <div class="control-section-body" data-section-body="analysis">
-              <!-- Dynamically populated -->
-            </div>
-          </div>
-
-          <!-- DISPLAY section -->
-          <div class="control-section" id="ctrl-display">
-            <div class="control-section-header" data-section="display">
-              <span>Display</span>
-              <span class="section-chevron">▾</span>
-            </div>
-            <div class="control-section-body" data-section-body="display">
-              <!-- Dynamically populated -->
-            </div>
-          </div>
-
-          <!-- STYLE LAB section -->
-          <div class="control-section" id="ctrl-style">
-            <div class="control-section-header" data-section="style">
-              <span>Style Lab</span>
-              <span class="section-chevron">▾</span>
-            </div>
-            <div class="control-section-body" data-section-body="style">
-              <!-- Theme + Palette + Font etc -->
-            </div>
-          </div>
+        <div class="code-header-right">
+          <button id="copy-code-btn" class="copy-btn" title="Copy to clipboard">
+            <span class="copy-text">Copy</span>
+          </button>
         </div>
       </div>
-    </aside>
-  </main>
-
-  <!-- ═══════════════════════════════════════════ CODE PANEL ═══════════════════════════════════════════ -->
-  <footer id="code-panel">
-    <div class="code-header">
-      <div class="code-header-left">
-
-        <span class="code-title">Python Code</span>
-        <span class="code-lib-badge" id="code-lib-badge">matplotlib</span>
-      </div>
-      <div class="code-header-right">
-        <button id="copy-code-btn" class="copy-btn" title="Copy to clipboard">
-
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-    </div>
-    <div class="code-body">
-      <pre id="code-pre"><code id="python-code" class="language-python">import matplotlib.pyplot as plt
+      <div class="code-body">
+        <pre id="code-pre"><code id="python-code" class="language-python">import matplotlib.pyplot as plt
 
 plt.plot(x, y)
 plt.title("Line Plot")
 plt.xlabel("X")
 plt.ylabel("Y")
 plt.show()</code></pre>
+      </div>
+    </aside>
+  </main>
+
+  <!-- ═══════════════════════════════════════════ BOTTOM CONTROLS PANEL ═══════════════════════════════════════════ -->
+  <footer id="bottom-controls">
+    <div class="controls-toolbar-header">
+      <span class="controls-title">Controls</span>
+    </div>
+    <div id="controls-container" class="controls-horizontal-scroll">
+      <!-- DATA section -->
+      <div class="control-section horizontal-card" id="ctrl-data">
+        <div class="control-section-header" data-section="data">
+          <span>Data</span>
+        </div>
+        <div class="control-section-body" data-section-body="data">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- APPEARANCE section -->
+      <div class="control-section horizontal-card" id="ctrl-appearance">
+        <div class="control-section-header" data-section="appearance">
+          <span>Appearance</span>
+        </div>
+        <div class="control-section-body" data-section-body="appearance">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- ANALYSIS section -->
+      <div class="control-section horizontal-card" id="ctrl-analysis">
+        <div class="control-section-header" data-section="analysis">
+          <span>Analysis</span>
+        </div>
+        <div class="control-section-body" data-section-body="analysis">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- DISPLAY section -->
+      <div class="control-section horizontal-card" id="ctrl-display">
+        <div class="control-section-header" data-section="display">
+          <span>Display</span>
+        </div>
+        <div class="control-section-body" data-section-body="display">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- STYLE LAB section -->
+      <div class="control-section horizontal-card" id="ctrl-style">
+        <div class="control-section-header" data-section="style">
+          <span>Style Lab</span>
+        </div>
+        <div class="control-section-body" data-section-body="style">
+          <!-- Theme + Palette + Font etc -->
+        </div>
+      </div>
     </div>
   </footer>
 
