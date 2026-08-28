@@ -26,6 +26,9 @@
   --accent-subtle: rgba(44, 188, 165, 0.08);
   --matplotlib: #e07c3e;
   --matplotlib-glow: rgba(224, 124, 62, 0.25);
+  --topic-orange: #f08c3a;
+  --topic-orange-hover: #ff9d4d;
+  --topic-orange-bg: rgba(240, 140, 58, 0.09);
   --seaborn: #b27cd4;
   --seaborn-glow: rgba(178, 124, 212, 0.25);
   --success: #5cb85c;
@@ -109,6 +112,9 @@
   --accent-hover: #158a78;
   --accent-glow: rgba(26, 158, 138, 0.12);
   --accent-subtle: rgba(26, 158, 138, 0.06);
+  --topic-orange: #d4651a;
+  --topic-orange-hover: #bc5512;
+  --topic-orange-bg: rgba(212, 101, 26, 0.09);
   --chart-bg: #ffffff;
   --code-bg: #1a1c20;
   --scrollbar-track: #eeedea;
@@ -356,8 +362,8 @@ body {
 
 .section-label {
   font-size: var(--text-xs);
-  font-weight: 600;
-  color: var(--text-muted);
+  font-weight: 700;
+  color: var(--topic-orange);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: var(--space-2);
@@ -383,8 +389,8 @@ body {
 }
 .select-input:focus {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-glow);
+  border-color: var(--topic-orange);
+  box-shadow: 0 0 0 3px var(--topic-orange-bg);
 }
 
 /* Chart Navigation */
@@ -403,24 +409,34 @@ body {
   padding: 8px var(--space-2);
   cursor: pointer;
   border-radius: var(--radius-sm);
-  transition: background 0.2s var(--ease);
+  transition: all 0.2s var(--ease);
   user-select: none;
 }
-.category-header:hover { background: var(--bg-card); }
+.category-header:hover {
+  background: var(--topic-orange-bg);
+}
+.category-header:hover .category-title {
+  color: var(--topic-orange-hover);
+}
+.category-header:hover .category-chevron {
+  color: var(--topic-orange-hover);
+}
 
 .category-icon { font-size: var(--text-sm); }
 .category-title {
   font-size: var(--text-xs);
-  font-weight: 600;
-  color: var(--text-secondary);
+  font-weight: 700;
+  color: var(--topic-orange);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   flex: 1;
+  transition: color 0.2s var(--ease);
 }
 .category-chevron {
   font-size: var(--text-xs);
-  color: var(--text-muted);
-  transition: transform 0.3s var(--ease);
+  color: var(--topic-orange);
+  opacity: 0.85;
+  transition: transform 0.3s var(--ease), color 0.2s;
 }
 .nav-category.collapsed .category-chevron { transform: rotate(-90deg); }
 .nav-category.collapsed .category-items { display: none; }
