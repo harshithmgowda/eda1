@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ML Visualization Playground | Learn Matplotlib & Seaborn Interactively</title>
+  <meta name="description" content="Interactive playground to learn data visualization with Matplotlib and Seaborn for Machine Learning. Click, change, see, experiment, understand.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+  <!-- Prism.js (code highlighting) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+  <!-- App Styles -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════ HEADER ═══════════════════════════════════════════ -->
+  <header id="app-header">
+    <div class="header-left">
+      <div class="logo">
+        <h1>ML Viz Playground</h1>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <!-- Library Selector -->
+      <div class="library-toggle" id="library-toggle">
+        <button class="lib-btn active" data-lib="matplotlib" title="Matplotlib">
+          <span class="lib-dot matplotlib-dot"></span>
+          <span>Matplotlib</span>
+        </button>
+        <button class="lib-btn" data-lib="seaborn" title="Seaborn">
+          <span class="lib-dot seaborn-dot"></span>
+          <span>Seaborn</span>
+        </button>
+        <div class="lib-slider"></div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <!-- Mode Toggle -->
+      <div class="mode-toggle" id="mode-toggle">
+        <button class="mode-btn active" data-mode="beginner" title="Beginner Mode">Beginner</button>
+        <button class="mode-btn" data-mode="advanced" title="Advanced Mode">Advanced</button>
+      </div>
+
+      <!-- Workflow Button -->
+      <button class="header-btn" id="workflow-btn" title="ML Workflow">
+        <span class="btn-label">Workflow</span>
+      </button>
+
+      <!-- Arcade Button -->
+      <button class="header-btn" id="arcade-btn" title="Visualization Arcade">
+        <span class="btn-label">Arcade</span>
+      </button>
+
+      <!-- Theme Toggle -->
+      <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+        <span class="theme-icon" id="theme-icon">◐</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════ MAIN ═══════════════════════════════════════════ -->
+  <main id="app-main">
+
+    <!-- ─────────────────────── LEFT SIDEBAR ─────────────────────── -->
+    <aside id="sidebar-left">
+      <div class="sidebar-scroll">
+        <!-- Dataset Selector -->
+        <div class="sidebar-section">
+          <div class="section-label">Dataset</div>
+          <select id="dataset-select" class="select-input">
+            <option value="student">Student Dataset</option>
+            <option value="employee">Employee Dataset</option>
+            <option value="sales">Sales Dataset</option>
+            <option value="titanic">Titanic Dataset</option>
+            <option value="car">Car Dataset</option>
+            <option value="synthetic">Synthetic ML Data</option>
+          </select>
+        </div>
+
+        <!-- Chart Categories -->
+        <nav id="chart-nav">
+          <!-- Category A: Basic -->
+          <div class="nav-category" data-category="basic">
+            <div class="category-header">
+              <span class="category-title">Basic / Essential</span>
+              <span class="category-chevron">▾</span>
+            </div>
+            <div class="category-items">
+              <button class="chart-btn active" data-chart="line">Line Plot</button>
+              <button class="chart-btn" data-chart="scatter">Scatter Plot</button>
+              <button class="chart-btn" data-chart="bar">Bar Plot</button>
+              <button class="chart-btn" data-chart="hbar">Horizontal Bar</button>
+              <button class="chart-btn" data-chart="histogram">Histogram</button>
+              <button class="chart-btn" data-chart="box">Box Plot</button>
+              <button class="chart-btn" data-chart="violin">Violin Plot</button>
+              <button class="chart-btn" data-chart="kde">KDE Plot</button>
+            </div>
+          </div>
+
+          <!-- Category B: Categorical -->
+          <div class="nav-category" data-category="categorical">
+            <div class="category-header">
+              <span class="category-title">Categorical</span>
+              <span class="category-chevron">▾</span>
+            </div>
+            <div class="category-items">
+              <button class="chart-btn" data-chart="count">Count Plot</button>
+              <button class="chart-btn" data-chart="strip">Strip Plot</button>
+              <button class="chart-btn" data-chart="swarm">Swarm Plot</button>
+              <button class="chart-btn" data-chart="point">Point Plot</button>
+              <button class="chart-btn" data-chart="catplot">Catplot Lab</button>
+            </div>
+          </div>
+
+          <!-- Category C: Relationship / Regression -->
+          <div class="nav-category" data-category="relationship">
+            <div class="category-header">
+              <span class="category-title">Relationship</span>
+              <span class="category-chevron">▾</span>
+            </div>
+            <div class="category-items">
+              <button class="chart-btn" data-chart="regplot">Regression Plot</button>
+              <button class="chart-btn" data-chart="lmplot">LM Plot</button>
+            </div>
+          </div>
+
+          <!-- Category D: Correlation / Multivariate -->
+          <div class="nav-category" data-category="correlation">
+            <div class="category-header">
+              <span class="category-title">Correlation</span>
+              <span class="category-chevron">▾</span>
+            </div>
+            <div class="category-items">
+              <button class="chart-btn" data-chart="heatmap">Heatmap</button>
+              <button class="chart-btn" data-chart="pairplot">Pairplot</button>
+              <button class="chart-btn" data-chart="jointplot">Joint Plot</button>
+              <button class="chart-btn" data-chart="hexbin">Hexbin Plot</button>
+            </div>
+          </div>
+
+          <!-- Category E: ML Model -->
+          <div class="nav-category" data-category="ml-model">
+            <div class="category-header">
+              <span class="category-title">ML Models</span>
+              <span class="category-chevron">▾</span>
+            </div>
+            <div class="category-items">
+              <button class="chart-btn" data-chart="confusion">Confusion Matrix</button>
+              <button class="chart-btn" data-chart="feature_imp">Feature Importance</button>
+              <button class="chart-btn" data-chart="model_perf">Model Comparison</button>
+              <button class="chart-btn" data-chart="roc">ROC Curve</button>
+              <button class="chart-btn" data-chart="pr_curve">Precision-Recall</button>
+              <button class="chart-btn" data-chart="learning_curve">Learning Curve</button>
+              <button class="chart-btn" data-chart="validation_curve">Validation Curve</button>
+            </div>
+          </div>
+
+          <!-- Category F: Training -->
+          <div class="nav-category" data-category="training">
+            <div class="category-header">
+              <span class="category-title">Training</span>
+              <span class="category-chevron">▾</span>
+            </div>
+            <div class="category-items">
+              <button class="chart-btn" data-chart="loss_curve">Loss Curve</button>
+              <button class="chart-btn" data-chart="lr_viz">Learning Rate</button>
+            </div>
+          </div>
+
+          <!-- Category G: EDA -->
+          <div class="nav-category" data-category="eda">
+            <div class="category-header">
+              <span class="category-title">Data Cleaning</span>
+              <span class="category-chevron">▾</span>
+            </div>
+            <div class="category-items">
+              <button class="chart-btn" data-chart="missing_values">Missing Values</button>
+              <button class="chart-btn" data-chart="dist_compare">Distribution Compare</button>
+              <button class="chart-btn" data-chart="standardization">Standardization</button>
+              <button class="chart-btn" data-chart="outlier_lab">Outlier Lab</button>
+            </div>
+          </div>
+
+          <!-- Category H: Layout -->
+          <div class="nav-category" data-category="layout">
+            <div class="category-header">
+              <span class="category-title">Multi-Plot</span>
+              <span class="category-chevron">▾</span>
+            </div>
+            <div class="category-items">
+              <button class="chart-btn" data-chart="subplots">Subplots</button>
+              <button class="chart-btn" data-chart="multi_axes">Multiple Axes</button>
+            </div>
+          </div>
+
+          <!-- Category I: Diagnostics -->
+          <div class="nav-category" data-category="diagnostics">
+            <div class="category-header">
+              <span class="category-title">Regression Diagnostics</span>
+              <span class="category-chevron">▾</span>
+            </div>
+            <div class="category-items">
+              <button class="chart-btn" data-chart="actual_vs_pred">Actual vs Predicted</button>
+              <button class="chart-btn" data-chart="residual">Residual Plot</button>
+              <button class="chart-btn" data-chart="residual_dist">Residual Distribution</button>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- ─────────────────────── CHART AREA ─────────────────────── -->
+    <section id="chart-area">
+      <!-- Chart Header -->
+      <div id="chart-header">
+        <div class="chart-title-row">
+          <h2 id="chart-title">Line Plot</h2>
+          <span id="chart-api" class="api-badge">plt.plot()</span>
+        </div>
+        <p id="chart-desc" class="chart-description">Visualize trends and changes over a continuous variable.</p>
+      </div>
+
+      <!-- Operations Bar -->
+      <div id="operations-bar">
+        <!-- Dynamically populated per chart -->
+      </div>
+
+      <!-- Chart Container -->
+      <div id="chart-container">
+        <div id="plotly-chart"></div>
+      </div>
+
+      <!-- Explain Toggle -->
+      <div id="explain-bar">
+        <button id="explain-btn" class="explain-toggle">Explain</button>
+        <div id="explain-content" class="explain-panel hidden"></div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────── RIGHT SIDEBAR ─────────────────────── -->
+    <aside id="sidebar-right">
+      <div class="sidebar-scroll">
+        <div class="sidebar-header">
+          <h3>Controls</h3>
+        </div>
+
+        <!-- Dynamic Control Sections -->
+        <div id="controls-container">
+          <!-- DATA section -->
+          <div class="control-section" id="ctrl-data">
+            <div class="control-section-header" data-section="data">
+              <span>Data</span>
+              <span class="section-chevron">▾</span>
+            </div>
+            <div class="control-section-body" data-section-body="data">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- APPEARANCE section -->
+          <div class="control-section" id="ctrl-appearance">
+            <div class="control-section-header" data-section="appearance">
+              <span>Appearance</span>
+              <span class="section-chevron">▾</span>
+            </div>
+            <div class="control-section-body" data-section-body="appearance">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- ANALYSIS section -->
+          <div class="control-section" id="ctrl-analysis">
+            <div class="control-section-header" data-section="analysis">
+              <span>Analysis</span>
+              <span class="section-chevron">▾</span>
+            </div>
+            <div class="control-section-body" data-section-body="analysis">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- DISPLAY section -->
+          <div class="control-section" id="ctrl-display">
+            <div class="control-section-header" data-section="display">
+              <span>Display</span>
+              <span class="section-chevron">▾</span>
+            </div>
+            <div class="control-section-body" data-section-body="display">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- STYLE LAB section -->
+          <div class="control-section" id="ctrl-style">
+            <div class="control-section-header" data-section="style">
+              <span>Style Lab</span>
+              <span class="section-chevron">▾</span>
+            </div>
+            <div class="control-section-body" data-section-body="style">
+              <!-- Theme + Palette + Font etc -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- ═══════════════════════════════════════════ CODE PANEL ═══════════════════════════════════════════ -->
+  <footer id="code-panel">
+    <div class="code-header">
+      <div class="code-header-left">
+
+        <span class="code-title">Python Code</span>
+        <span class="code-lib-badge" id="code-lib-badge">matplotlib</span>
+      </div>
+      <div class="code-header-right">
+        <button id="copy-code-btn" class="copy-btn" title="Copy to clipboard">
+
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre id="code-pre"><code id="python-code" class="language-python">import matplotlib.pyplot as plt
+
+plt.plot(x, y)
+plt.title("Line Plot")
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.show()</code></pre>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════ MODALS ═══════════════════════════════════════════ -->
+
+  <!-- Workflow Modal -->
+  <div id="workflow-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content workflow-modal-content">
+      <div class="modal-header">
+        <h2>ML Workflow</h2>
+        <button class="modal-close" data-close="workflow-modal">✕</button>
+      </div>
+      <div class="modal-body" id="workflow-body">
+        <!-- Workflow steps populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Arcade Modal -->
+  <div id="arcade-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content arcade-modal-content">
+      <div class="modal-header">
+        <h2>Visualization Arcade</h2>
+        <button class="modal-close" data-close="arcade-modal">✕</button>
+      </div>
+      <div class="modal-body" id="arcade-body">
+        <!-- Arcade games populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast / Notification -->
+  <div id="toast" class="toast hidden">
+    <span id="toast-msg"></span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ SCRIPTS ═══════════════════════════════════════════ -->
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/charts-core.js"></script>
+  <script src="js/charts-advanced.js"></script>
+  <script src="js/charts-eda.js"></script>
+  <script src="js/workflow.js"></script>
+  <script src="js/arcade.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
